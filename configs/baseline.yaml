@@ -1,0 +1,65 @@
+competition: hyperspectral-object-detection-challenge-2026
+seed: 2026
+num_classes: 18
+num_bands: 16
+spectral_range_nm: [460, 600]
+
+data:
+  root: /kaggle/input/hyperspectral-object-detection-challenge-2026
+  train_dir: train
+  test_dir: test
+  ranking_dir: ranking
+  vis_mosaic_grid: 4
+  decode_mosaic: true
+  annotations: train.csv
+  class_file: class.txt
+  image_index: artifacts/image_index.csv
+  stats_file: artifacts/band_stats.json
+  group_key: scene_id
+
+model:
+  family: yolo-style-one-stage
+  variant: small
+  in_channels: 16
+  spectral_stem: true
+  pretrained_rgb_checkpoint: yolov8s.pt
+  pretrained_source: Ultralytics official release; declare exact version and license in final package
+
+train:
+  image_size: 768
+  epochs: 120
+  batch_size: 8
+  workers: 2
+  optimizer: AdamW
+  learning_rate: 0.0003
+  weight_decay: 0.0005
+  warmup_epochs: 5
+  amp: true
+  mosaic_probability: 0.35
+  mixup_probability: 0.05
+  spectral_dropout_probability: 0.15
+  band_gain_jitter: 0.05
+  early_stopping_patience: 25
+
+validation:
+  split: group-stratified
+  fraction: 0.20
+  primary_metric: map50_95
+  secondary_metric: map50
+  score_threshold_grid: [0.05, 0.10, 0.15, 0.20, 0.25, 0.30]
+  nms_iou_grid: [0.45, 0.50, 0.55, 0.60, 0.65]
+
+inference:
+  conf_threshold: 0.15
+  nms_iou: 0.55
+  max_detections: 300
+  tta: true
+  tta_scales: [0.85, 1.0, 1.15]
+  tta_flips: [horizontal, vertical]
+  tile_size: 1024
+  tile_overlap: 0.20
+
+submission:
+  columns: [id, image_id, class_id, confidence, x1, y1, x2, y2]
+  require_consecutive_id: true
+  image_id_from_stem: true
