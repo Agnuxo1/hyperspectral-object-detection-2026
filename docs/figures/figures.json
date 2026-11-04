@@ -1,0 +1,351 @@
+{
+  "title": "Hyperspectral detection",
+  "subtitle": "Preserving 16 visible-light bands",
+  "figures": [
+    {
+      "kind": "xy",
+      "basis": "Illustrative simulation",
+      "title": "Different spectra can share a broad-band colour",
+      "subtitle": "Illustrative reflectance shapes; no sample or sensor calibration",
+      "source": "Source: synthetic curves over the nominal README wavelength interval",
+      "xlim": [
+        460,
+        600
+      ],
+      "ylim": [
+        0,
+        1
+      ],
+      "xlabel": "Wavelength (nm)",
+      "ylabel": "Normalised response",
+      "series": [
+        {
+          "label": "Synthetic material A",
+          "points": [
+            [
+              460,
+              0.2785218015787378
+            ],
+            [
+              469.3333333333333,
+              0.3438906549143916
+            ],
+            [
+              478.6666666666667,
+              0.4420122797882769
+            ],
+            [
+              488,
+              0.556769715969681
+            ],
+            [
+              497.3333333333333,
+              0.6524208748757819
+            ],
+            [
+              506.6666666666667,
+              0.69
+            ],
+            [
+              516,
+              0.6524208748757819
+            ],
+            [
+              525.3333333333334,
+              0.556769715969681
+            ],
+            [
+              534.6666666666666,
+              0.4420122797882769
+            ],
+            [
+              544,
+              0.3438906549143916
+            ],
+            [
+              553.3333333333334,
+              0.2785218015787378
+            ],
+            [
+              562.6666666666666,
+              0.24339992213289605
+            ],
+            [
+              572,
+              0.22792006459217534
+            ],
+            [
+              581.3333333333334,
+              0.22226913649710078
+            ],
+            [
+              590.6666666666666,
+              0.22055031342177187
+            ],
+            [
+              600,
+              0.22011297365391716
+            ]
+          ]
+        },
+        {
+          "label": "Synthetic material B",
+          "points": [
+            [
+              460,
+              0.16062359056265652
+            ],
+            [
+              469.3333333333333,
+              0.1622131246618802
+            ],
+            [
+              478.6666666666667,
+              0.16687394876146622
+            ],
+            [
+              488,
+              0.17868533000805215
+            ],
+            [
+              497.3333333333333,
+              0.20445179711181213
+            ],
+            [
+              506.6666666666667,
+              0.2525490453904053
+            ],
+            [
+              516,
+              0.3286353555640521
+            ],
+            [
+              525.3333333333334,
+              0.4289177016860729
+            ],
+            [
+              534.6666666666666,
+              0.5353048857986779
+            ],
+            [
+              544,
+              0.6183984226654927
+            ],
+            [
+              553.3333333333334,
+              0.65
+            ],
+            [
+              562.6666666666666,
+              0.6183984226654927
+            ],
+            [
+              572,
+              0.5353048857986779
+            ],
+            [
+              581.3333333333334,
+              0.4289177016860729
+            ],
+            [
+              590.6666666666666,
+              0.3286353555640521
+            ],
+            [
+              600,
+              0.2525490453904053
+            ]
+          ]
+        }
+      ],
+      "alt": "Different spectra can share a broad-band colour. Illustrative reflectance shapes; no sample or sensor calibration",
+      "xticks": [
+        460,
+        495,
+        530,
+        565,
+        600
+      ],
+      "yticks": [
+        0,
+        0.25,
+        0.5,
+        0.75,
+        1
+      ],
+      "id": "fig-01"
+    },
+    {
+      "kind": "flow",
+      "id": "fig-02",
+      "basis": "Technical schematic",
+      "title": "Change one stage at a time",
+      "subtitle": "Pseudo-RGB control   /   Full-band stem   /   Spectral augmentation   /   Tiles and resolution",
+      "source": "Source: README.md · conceptual relations, no measured values",
+      "nodes": [
+        [
+          0.115,
+          0.52,
+          "E0"
+        ],
+        [
+          0.38,
+          0.52,
+          "E1"
+        ],
+        [
+          0.62,
+          0.52,
+          "E2"
+        ],
+        [
+          0.885,
+          0.52,
+          "E3"
+        ]
+      ],
+      "edges": [
+        [
+          0,
+          1,
+          ""
+        ],
+        [
+          1,
+          2,
+          ""
+        ],
+        [
+          2,
+          3,
+          ""
+        ]
+      ],
+      "alt": "Change one stage at a time. E0: Pseudo-RGB control; E1: Full-band stem; E2: Spectral augmentation; E3: Tiles and resolution"
+    },
+    {
+      "kind": "flow",
+      "id": "fig-03",
+      "basis": "Technical schematic",
+      "title": "A split before the score",
+      "subtitle": "Avoid scene overlap   /   Freeze normalisation   /   Report mAP   /   Keep data out of Git",
+      "source": "Source: README.md · conceptual relations, no measured values",
+      "nodes": [
+        [
+          0.115,
+          0.52,
+          "Group by source"
+        ],
+        [
+          0.38,
+          0.52,
+          "Fit on train"
+        ],
+        [
+          0.62,
+          0.52,
+          "Score held-out"
+        ],
+        [
+          0.885,
+          0.52,
+          "Verify schema"
+        ]
+      ],
+      "edges": [
+        [
+          0,
+          1,
+          ""
+        ],
+        [
+          1,
+          2,
+          ""
+        ],
+        [
+          2,
+          3,
+          ""
+        ]
+      ],
+      "alt": "A split before the score. Group by source: Avoid scene overlap; Fit on train: Freeze normalisation; Score held-out: Report mAP; Verify schema: Keep data out of Git"
+    },
+    {
+      "kind": "flow",
+      "id": "fig-04",
+      "basis": "Technical schematic",
+      "title": "Reuse and citation",
+      "subtitle": "MIT notice applies   /   Keep source terms   /   Use CITATION.cff",
+      "source": "Source: README.md · conceptual relations, no measured values",
+      "nodes": [
+        [
+          0.16,
+          0.52,
+          "Original code"
+        ],
+        [
+          0.5,
+          0.52,
+          "Pretrained models"
+        ],
+        [
+          0.84,
+          0.52,
+          "Cite the work"
+        ]
+      ],
+      "edges": [
+        [
+          0,
+          1,
+          ""
+        ],
+        [
+          1,
+          2,
+          ""
+        ]
+      ],
+      "alt": "Reuse and citation. Original code: MIT notice applies; Pretrained models: Keep source terms; Cite the work: Use CITATION.cff"
+    },
+    {
+      "kind": "flow",
+      "id": "fig-05",
+      "basis": "Technical schematic",
+      "title": "How the references inform follow-up",
+      "subtitle": "Resolve DOI or arXiv ID   /   Predefine comparisons   /   Separate hypotheses and results",
+      "source": "Source: README.md · conceptual relations, no measured values",
+      "nodes": [
+        [
+          0.16,
+          0.52,
+          "Primary sources"
+        ],
+        [
+          0.5,
+          0.52,
+          "Study design"
+        ],
+        [
+          0.84,
+          0.52,
+          "Evidence to report"
+        ]
+      ],
+      "edges": [
+        [
+          0,
+          1,
+          ""
+        ],
+        [
+          1,
+          2,
+          ""
+        ]
+      ],
+      "alt": "How the references inform follow-up. Primary sources: Resolve DOI or arXiv ID; Study design: Predefine comparisons; Evidence to report: Separate hypotheses and results"
+    }
+  ]
+}
