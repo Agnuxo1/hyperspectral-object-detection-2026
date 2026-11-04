@@ -1,5 +1,10 @@
 # Hyperspectral Object Detection Challenge 2026
 
+![Hyperspectral Object Detection Challenge 2026: Preserving 16 visible-light bands. Illustrative cover, not data.](docs/science-figures/header.gif)
+
+**Project citation:** [Francisco Angulo de Lafuente](https://orcid.org/0009-0001-1634-7063) · [CITATION.cff](CITATION.cff) · [Software metadata](codemeta.json).
+
+
 ![Hyperspectral detector header](assets/header.png)
 
 An open-source, reproducible reference pipeline for [Hyperspectral Object Detection Challenge 2026](https://www.kaggle.com/competitions/hyperspectral-object-detection-challenge-2026). The design keeps all 16 visible-light bands (460–600 nm), predicts 18 classes, and targets the official `mAP@[0.50:0.95]` metric.
@@ -7,6 +12,10 @@ An open-source, reproducible reference pipeline for [Hyperspectral Object Detect
 ![Spectral cube and signatures](assets/spectral-cube.png)
 
 ## Design
+
+![Keep spectral and spatial evidence: 16-band cube — 460–600 nm; Spectral stem — Learn a projection; Detector — Use spatial features; Class-wise NMS — Emit valid boxes](docs/science-figures/01.gif)
+
+*Figure 1. Keep spectral and spatial evidence.*
 
 ```text
 H x W x 16 cube -> train-only band normalization
@@ -20,6 +29,10 @@ The spectral stem uses a 1x1 projection followed by spatial convolutions so pret
 
 ## Experiment ladder
 
+![Change one stage at a time: E0 — Pseudo-RGB control; E1 — Full-band stem; E2 — Spectral augmentation; E3 — Tiles and resolution](docs/science-figures/02.gif)
+
+*Figure 2. Change one stage at a time.*
+
 1. `E0`: pseudo-RGB detector for labels, boxes, and submission-contract checks.
 2. `E1`: 16-band detector with an inflated RGB initialization.
 3. `E2`: spectral dropout, per-band intensity jitter, and spatial augmentation.
@@ -29,8 +42,31 @@ The spectral stem uses a 1x1 projection followed by spatial convolutions so pret
 
 ## Reproducibility and rules
 
+![A split before the score: Group by source — Avoid scene overlap; Fit on train — Freeze normalisation; Score held-out — Report mAP; Verify schema — Keep data out of Git](docs/science-figures/03.gif)
+
+*Figure 3. A split before the score.*
+
 Competition data and generated weights are excluded from this public release. Use only data and pretrained models permitted by the current rules, record their sources and licenses, and validate the exact `submission.csv` schema. A local score is not evidence of real-world remote-sensing performance.
 
 ## License
 
+![Reuse and citation: Original code — MIT notice applies; Pretrained models — Keep source terms; Cite the work — Use CITATION.cff](docs/science-figures/04.gif)
+
+*Figure 4. Reuse and citation.*
+
 MIT for the original code. See [LICENSE](LICENSE). External datasets, pretrained backbones, and dependencies retain their own licenses.
+
+## Bibliography and research directions
+
+![How the references inform follow-up: Primary sources — Resolve DOI or arXiv ID; Study design — Predefine comparisons; Evidence to report — Separate hypotheses and results](docs/science-figures/05.gif)
+
+*Figure 5. How the references inform follow-up.*
+
+The following primary sources inform proposed checks. Their text, code, figures, and data are not included in this documentation update.
+
+- [Lin et al. (2017), Feature Pyramid Networks for Object Detection](https://arxiv.org/abs/1612.03144). Compare spectral stems at identical scales and use a fixed pyramid to isolate the effect of added bands.
+- [Redmon and Farhadi (2018), YOLOv3: An Incremental Improvement](https://arxiv.org/abs/1804.02767). Use multiscale detection as background; ablate tiling against a fixed detector and report errors by object size.
+
+**Attribution and reuse.** Please credit [Francisco Angulo de Lafuente](https://orcid.org/0009-0001-1634-7063) in academic and software reuse and do not present this work as your own. When distributing copies or substantial portions of the original MIT software, preserve the copyright and permission notice. Upstream material keeps its own terms. [License](LICENSE) · [Figure provenance](docs/science-figures/PROVENANCE.md).
+
+<!-- research-provenance: project=hyperspectral-object-detection-2026; date=2026-11-04; author=Francisco Angulo de Lafuente; orcid=https://orcid.org/0009-0001-1634-7063; original-software-license=MIT -->

@@ -1,0 +1,85 @@
+{
+  "title": "Hyperspectral detection",
+  "sub": "Preserving 16 visible-light bands",
+  "issue": "Research reference pipeline",
+  "sections": [
+    [
+      "Design",
+      "Keep spectral and spatial evidence",
+      [
+        "16-band cube",
+        "Spectral stem",
+        "Detector",
+        "Class-wise NMS"
+      ],
+      [
+        "460–600 nm",
+        "Learn a projection",
+        "Use spatial features",
+        "Emit valid boxes"
+      ]
+    ],
+    [
+      "Experiment ladder",
+      "Change one stage at a time",
+      [
+        "E0",
+        "E1",
+        "E2",
+        "E3"
+      ],
+      [
+        "Pseudo-RGB control",
+        "Full-band stem",
+        "Spectral augmentation",
+        "Tiles and resolution"
+      ]
+    ],
+    [
+      "Reproducibility and rules",
+      "A split before the score",
+      [
+        "Group by source",
+        "Fit on train",
+        "Score held-out",
+        "Verify schema"
+      ],
+      [
+        "Avoid scene overlap",
+        "Freeze normalisation",
+        "Report mAP",
+        "Keep data out of Git"
+      ]
+    ],
+    [
+      "License",
+      "Reuse and citation",
+      [
+        "Original code",
+        "Pretrained models",
+        "Cite the work"
+      ],
+      [
+        "MIT notice applies",
+        "Keep source terms",
+        "Use CITATION.cff"
+      ]
+    ],
+    [
+      "Bibliography and research directions",
+      "How the references inform follow-up",
+      [
+        "Primary sources",
+        "Study design",
+        "Evidence to report"
+      ],
+      [
+        "Resolve DOI or arXiv ID",
+        "Predefine comparisons",
+        "Separate hypotheses and results"
+      ]
+    ]
+  ],
+  "header_source": "assets/header.png",
+  "repository": "hyperspectral-object-detection-2026"
+}
