@@ -12,6 +12,10 @@ An open-source, reproducible reference pipeline for [Hyperspectral Object Detect
 
 ![Spectral cube and signatures](assets/spectral-cube.png)
 
+<!-- impact-note:start -->
+<sub><strong>Efficiency and practical value.</strong> The proposed spectral stem retains all sixteen bands while adapting pretrained RGB features, aiming to reuse existing visual representations without discarding the additional spectral measurements. Its staged experiments isolate the value of spectral processing, augmentation and tiled inference before spending more computation. The <a href="#design">design and experiment ladder</a> define this opportunity; measured gains require matched validation.</sub>
+<!-- impact-note:end -->
+
 ## Design
 
 ![Different spectra can share a broad-band colour. Illustrative reflectance shapes; no sample or sensor calibration](docs/figures/fig-01.gif)
